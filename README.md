@@ -127,19 +127,7 @@ b. Verificación de errores:
 
 c. Mapeo de la memoria compartida en el espacio de direcciones:
 
-shared_memory = (char *) MapViewOfFile(
-
-hMapFile,
-
-FILE_MAP_ALL_ACCESS,
-
-0,
-
-0,
-
-SIZE
-
-);
+shared_memory = (char *) MapViewOfFile(hMapFile, FILE_MAP_ALL_ACCESS, 0, 0, SIZE);
 
 	•	hMapFile: Manejador del objeto de memoria compartida.
 
@@ -171,29 +159,7 @@ char cmdLine[MAX_PATH];
 
 sprintf(cmdLine, "%s child", argv[0]);
 
-if (!CreateProcess(
-
-NULL,
-
-cmdLine,
-
-NULL,
-
-NULL,
-
-FALSE,
-
-0,
-
-NULL,
-
-NULL,
-
-&si,
-
-&pi
-
-)) {
+if (!CreateProcess(NULL, cmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
 
 // Manejo de errores
 
@@ -223,15 +189,7 @@ g. Liberación de recursos:
 
 a. Apertura de la memoria compartida:
 
-hMapFile = OpenFileMapping(
-
-FILE_MAP_ALL_ACCESS,
-
-FALSE,
-
-SHARED_MEM_NAME
-
-);
+hMapFile = OpenFileMapping(FILE_MAP_ALL_ACCESS, FALSE, SHARED_MEM_NAME);
 
 	•	FILE_MAP_ALL_ACCESS: Permite lectura y escritura.
 
@@ -243,19 +201,7 @@ SHARED_MEM_NAME
 
 b. Mapeo de la memoria compartida en el espacio de direcciones:
 
-shared_memory = (char *) MapViewOfFile(
-
-hMapFile,
-
-FILE_MAP_ALL_ACCESS,
-
-0,
-
-0,
-
-SIZE
-
-);
+shared_memory = (char *) MapViewOfFile(hMapFile, FILE_MAP_ALL_ACCESS, 0, 0, SIZE);
 
 	•	Similar al proceso padre.
 
