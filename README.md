@@ -1,5 +1,7 @@
 # Colecci-n_Ejercicios_Gesti-n_de_Memoria_Pablo_Alcolea#include <sys/mman.h>
 
+https://github.com/PabloAlcoleaSesse/Colecci-n_Ejercicios_Gesti-n_de_Memoria_Pablo_Alcolea.git
+
 Explicación paso a paso:
 
 Primero, importamos las bibliotecas necesarias para la asignación de memoria y la creación de procesos.
@@ -30,4 +32,3 @@ Espero que esta explicación te ayude a entender mejor el código. Si tienes má
 
 Las librerias que se utilizan("sys/mman.h") son librerias de Unix por lo que funcionan en dispositivos de MacOS y Linux.
 Para que el codigo funcione hay que modificarlo al codigo como el archivo main_windows.c que se encuentra en el ejecutable Ejercicio_para_windows.
-Por 
