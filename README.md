@@ -1,36 +1,5 @@
 # Colecci-n_Ejercicios_Gesti-n_de_Memoria_Pablo_Alcolea#include <sys/mman.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
 
-#define SIZE 4096
-
-int main() {
-    char *shared_memory = mmap(NULL, SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-    if (shared_memory == MAP_FAILED) {
-        perror("mmap");
-        exit(EXIT_FAILURE);
-    }
-    
-    pid_t pid = fork();
-    
-    if (pid < 0) {
-        perror("fork");
-        exit(EXIT_FAILURE);
-    } else if (pid == 0) {
-        printf("Child reads: %s\n", shared_memory);
-        munmap(shared_memory, SIZE);
-        exit(EXIT_SUCCESS);
-    } else {
-        strcpy(shared_memory, "Hello, child process!");
-        wait(NULL);
-        munmap(shared_memory, SIZE);
-    }
-
-    return 0;
-}
 Explicación paso a paso:
 
 Primero, importamos las bibliotecas necesarias para la asignación de memoria y la creación de procesos.
@@ -56,3 +25,9 @@ Si el valor devuelto es 0, significa que estamos en el proceso hijo. En este cas
 Si el valor devuelto por fork() es mayor que 0, significa que estamos en el proceso padre. En este caso, escribimos en la memoria compartida, esperamos a que el proceso hijo termine y luego liberamos la memoria.
 
 Espero que esta explicación te ayude a entender mejor el código. Si tienes más preguntas, no dudes en hacerlas.
+
+## Solucion:
+
+Las librerias que se utilizan("sys/mman.h") son librerias de Unix por lo que funcionan en dispositivos de MacOS y Linux.
+Para que el codigo funcione hay que modificarlo al codigo como el archivo main_windows.c que se encuentra en el ejecutable Ejercicio_para_windows.
+Por 
